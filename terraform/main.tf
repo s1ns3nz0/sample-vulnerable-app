@@ -121,7 +121,7 @@ resource "aws_ecs_task_definition" "payment_api" {
       environment = [
         {
           name  = "AWS_ACCESS_KEY_ID"
-          value = "AKIAIOSFODNN7EXAMPLE"  # VULNERABILITY: hardcoded in task def
+          value = "AKIAI44QH8DHBEXAMPLE"  # VULNERABILITY: hardcoded in task def
         }
       ]
     }

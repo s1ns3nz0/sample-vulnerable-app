@@ -36,7 +36,7 @@
 ```bash
 # Run with Docker
 docker build -t sample-vulnerable-app .
-docker run -p 8080:8080 --name vulnerable-app sample-vulnerable-app
+docker run -p 127.0.0.1:8080:8080 --name vulnerable-app sample-vulnerable-app
 
 # Generate attack traffic
 python scripts/simulate-traffic.py
