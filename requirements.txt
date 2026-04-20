@@ -1,0 +1,9 @@
+# INTENTIONALLY PINNED TO VULNERABLE VERSIONS
+fastapi==0.104.0
+uvicorn==0.24.0
+pydantic==2.5.0
+
+# VULNERABILITY: Known CVEs in these versions
+cryptography==3.4.6
+requests==2.25.0
+PyJWT==1.7.1
