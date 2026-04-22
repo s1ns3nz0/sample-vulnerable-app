@@ -1,0 +1,83 @@
+openapi: "3.0.3"
+info:
+  title: Payment API
+  version: "1.0.0"
+  description: QR payment confirmation service (intentionally vulnerable)
+servers:
+  - url: http://127.0.0.1:8080
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: OK
+  /api/login:
+    post:
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: admin
+                password:
+                  type: string
+                  example: admin
+      responses:
+        "200":
+          description: JWT token
+        "401":
+          description: Invalid credentials
+  /api/payment/create:
+    post:
+      summary: Create payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                card_number:
+                  type: string
+                  example: "4111111111111111"
+                amount:
+                  type: number
+                  example: 5000
+                currency:
+                  type: string
+                  example: JPY
+      responses:
+        "200":
+          description: Payment created
+  /api/payment/confirm:
+    post:
+      summary: Confirm payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payment_id:
+                  type: string
+                otp:
+                  type: string
+                  example: "123456"
+      responses:
+        "200":
+          description: Payment confirmed
+  /api/export:
+    get:
+      summary: Export data (SQL injectable)
+      parameters:
+        - name: query
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Export results
